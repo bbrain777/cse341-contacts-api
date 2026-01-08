@@ -1,6 +1,13 @@
-### Get all contacts
+### LOCAL - Get all
 GET http://localhost:8080/contacts
 
-### Get one contact by id
-GET http://localhost:8080/contacts/PASTE_A_REAL_ID_HERE
+### RENDER - Get all
+GET https://cse341-contacts-api-fjj4.onrender.com/contacts
+
+### LOCAL - Get one (replace id)
+GET http://localhost:8080/contacts/<id>
+
+### RENDER - Get one (replace id)
+GET https://cse341-contacts-api-fjj4.onrender.com/contacts/<id>
+
 
