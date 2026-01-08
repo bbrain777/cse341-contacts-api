@@ -1,35 +1,39 @@
 const { ObjectId } = require("mongodb");
 const { getDb } = require("../db/connect");
 
-async function getAllContacts(req, res) {
+const getAllContacts = async (req, res) => {
   try {
     const db = getDb();
-    const contacts = await db.collection("contacts").find().toArray();
-    res.status(200).json(contacts);
+    const result = await db.collection("contacts").find().toArray();
+    res.setHeader("Content-Type", "application/json");
+    res.status(200).json(result);
   } catch (err) {
-    res.status(500).json({ message: "Failed to fetch contacts", error: err.message });
+    res.status(500).json({ message: err.message });
   }
-}
+};
 
-async function getContactById(req, res) {
+const getSingleContact = async (req, res) => {
   try {
-    const { id } = req.params;
+    const contactId = req.params.id;
 
-    if (!ObjectId.isValid(id)) {
-      return res.status(400).json({ message: "Invalid contact id format" });
+    if (!ObjectId.isValid(contactId)) {
+      return res.status(400).json({ message: "Invalid contact id" });
     }
 
     const db = getDb();
-    const contact = await db.collection("contacts").findOne({ _id: new ObjectId(id) });
+    const result = await db
+      .collection("contacts")
+      .findOne({ _id: new ObjectId(contactId) });
 
-    if (!contact) {
+    if (!result) {
       return res.status(404).json({ message: "Contact not found" });
     }
 
-    res.status(200).json(contact);
+    res.setHeader("Content-Type", "application/json");
+    res.status(200).json(result);
   } catch (err) {
-    res.status(500).json({ message: "Failed to fetch contact", error: err.message });
+    res.status(500).json({ message: err.message });
   }
-}
+};
 
-module.exports = { getAllContacts, getContactById };
+module.exports = { getAllContacts, getSingleContact };

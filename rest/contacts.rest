@@ -1,5 +1,6 @@
-### GET all contacts
+### Get all contacts
 GET http://localhost:8080/contacts
 
-### GET one contact by id (replace with a real _id)
-GET http://localhost:8080/contacts/PUT_REAL_ID_HERE
+### Get one contact by id
+GET http://localhost:8080/contacts/PASTE_A_REAL_ID_HERE
+
