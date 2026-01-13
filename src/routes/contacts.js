@@ -4,4 +4,9 @@ const contactsController = require("../controllers/contactsController");
 router.get("/", contactsController.getAllContacts);
 router.get("/:id", contactsController.getSingleContact);
 
+// Week 2 CRUD
+router.post("/", contactsController.createContact);
+router.put("/:id", contactsController.updateContact);
+router.delete("/:id", contactsController.deleteContact);
+
 module.exports = router;
