@@ -4,7 +4,7 @@ const doc = {
     description: "CSE 341 Contacts API documentation",
   },
   host: "https://cse341-contacts-api-fjj4.onrender.com",
-  schemes: ["http"],
+  schemes: ["https"],
   definitions: {
     Contact: {
       firstName: "John",
