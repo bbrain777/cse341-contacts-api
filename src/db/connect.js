@@ -1,22 +1,13 @@
-const { MongoClient } = require("mongodb");
+const mongoose = require("mongoose");
 
-let client;
-let db;
+const initDb = async (mongoUri) => {
+  if (!mongoUri) throw new Error("MONGODB_URI is missing in .env");
 
-async function initDb(uri, dbName) {
-  if (db) return db;
+  // prevents reconnecting if already connected
+  if (mongoose.connection.readyState === 1) return;
 
-  client = new MongoClient(uri);
-  await client.connect();
-  db = client.db(dbName);
+  await mongoose.connect(mongoUri);
+  console.log("✅ MongoDB connected via Mongoose");
+};
 
-  console.log("✅ Connected to MongoDB");
-  return db;
-}
-
-function getDb() {
-  if (!db) throw new Error("DB not initialized. Call initDb first.");
-  return db;
-}
-
-module.exports = { initDb, getDb };
+module.exports = { initDb };

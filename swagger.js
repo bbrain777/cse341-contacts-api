@@ -1,17 +1,15 @@
 const doc = {
+  swagger: "2.0",
   info: {
     title: "Contacts API",
     description: "CSE 341 Contacts API documentation",
+    version: "1.0.0",
   },
-  host: "https://cse341-contacts-api-fjj4.onrender.com",
+  host: "cse341-contacts-api-fjj4.onrender.com",
   schemes: ["https"],
-  definitions: {
-    Contact: {
-      firstName: "John",
-      lastName: "Doe",
-      email: "john@example.com",
-      favoriteColor: "Blue",
-      birthday: "1990-01-01",
-    },
-  },
+  basePath: "/",
+  // paths: {...}
+  // definitions: {...}
 };
+
+module.exports = doc;
